@@ -1,8 +1,8 @@
 // pages/onboarding.js
 import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext, CampaignContext } from '../App'; // Import contexts from App.js
+import { AuthContext, CampaignContext } from './_app'; // Import contexts from _app.js
 
-function OnboardingPage({ navigateTo }) {
+function OnboardingPage() { // Removed navigateTo prop as we will use window.location.href for redirection
   const { userId, userEmail, setIsFirstTimeUser } = useContext(AuthContext);
   const { productBrief, setProductBrief, setValuePropFramework } = useContext(CampaignContext);
   const [companyName, setCompanyName] = useState('');
@@ -42,7 +42,6 @@ function OnboardingPage({ navigateTo }) {
     setProductBrief(currentProductBrief); // Update context with full brief
 
     try {
-      // Call AI to generate initial Value Prop Framework
       const aiPrompt = `
         You are an expert SaaS brand strategist with decades of experience in product marketing and launching successful brand marketing campaigns.
         Your task is to generate a comprehensive Value Proposition Framework based on the following product brief.
@@ -105,7 +104,7 @@ function OnboardingPage({ navigateTo }) {
       }
 
       setMessage('Value Proposition Framework generated successfully!');
-      navigateTo('dashboard');
+      window.location.href = '/dashboard'; // Redirect to dashboard
     } catch (error) {
       console.error('Error generating value prop:', error);
       setMessage(`Failed to generate value prop: ${error.message}. Please try again.`);

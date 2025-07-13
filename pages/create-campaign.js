@@ -1,8 +1,8 @@
 // pages/create-campaign.js
-import React, { useState, useContext, useEffect } from 'react';
-import { CampaignContext, AuthContext } from '../App'; // Import contexts from App.js
+import React, { useState, useContext } from 'react';
+import { CampaignContext } from './_app'; // Import CampaignContext from _app.js
 
-function CreateCampaignPage({ navigateTo }) {
+function CreateCampaignPage() { // Removed navigateTo prop for simplicity, use window.location.href if needed
   const { productBrief, valuePropFramework, addCampaignToHistory } = useContext(CampaignContext);
   const [campaignGoal, setCampaignGoal] = useState('');
   const [campaignTone, setCampaignTone] = useState('');
@@ -115,7 +115,7 @@ function CreateCampaignPage({ navigateTo }) {
       <div className="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-4xl mx-auto">
         <p className="text-gray-400 mb-6">
           Your existing product brief and Brand DNA will be used to generate this campaign.
-          <button onClick={() => navigateTo('dashboard')} className="text-blue-400 hover:text-blue-300 ml-2 font-medium">
+          <button onClick={() => window.location.href = '/dashboard'} className="text-blue-400 hover:text-blue-300 ml-2 font-medium">
             View Brand DNA
           </button>
         </p>
@@ -195,7 +195,7 @@ function CreateCampaignPage({ navigateTo }) {
       </div>
       <div className="mt-8 text-center">
         <button
-          onClick={() => navigateTo('dashboard')}
+          onClick={() => window.location.href = '/dashboard'} // Use window.location.href for navigation
           className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
         >
           Back to Dashboard

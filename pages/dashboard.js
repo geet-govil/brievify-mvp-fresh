@@ -1,8 +1,8 @@
 // pages/dashboard.js
 import React, { useContext } from 'react';
-import { AuthContext, CampaignContext } from '../App'; // Import contexts from App.js
+import { AuthContext, CampaignContext } from './_app'; // Import contexts from _app.js
 
-function DashboardPage({ navigateTo }) {
+function DashboardPage() { // Removed navigateTo prop for simplicity, use window.location.href if needed
   const { userEmail, logout } = useContext(AuthContext);
   const { productBrief, valuePropFramework, campaignHistory } = useContext(CampaignContext);
 
@@ -56,7 +56,7 @@ function DashboardPage({ navigateTo }) {
             <p className="text-gray-400">No Brand DNA generated yet. Complete onboarding or update your product brief.</p>
           )}
           <button
-            onClick={() => navigateTo('onboarding')}
+            onClick={() => window.location.href = '/onboarding'} // Use window.location.href for navigation
             className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 w-full"
           >
             Update Product Brief
@@ -99,7 +99,7 @@ function DashboardPage({ navigateTo }) {
 
       <div className="mt-8 text-center">
         <button
-          onClick={() => navigateTo('create-campaign')}
+          onClick={() => window.location.href = '/create-campaign'} // Use window.location.href for navigation
           className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg text-xl transition duration-300 ease-in-out transform hover:scale-105 shadow-lg"
         >
           Create New Campaign
